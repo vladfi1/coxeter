@@ -1,0 +1,216 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath, amssymb, amsthm, enumerate}
+
+\theoremstyle{definition}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+
+\section{Abstract}
+
+%define domain and subdomain
+%define main problem or objective (a bit vague so that exact subject is not revealed)
+%"we extend a property proved by xxx thesis..."
+%approach / methods (including program)
+%summary of main proven results/ properties
+%next steps
+
+In this paper, we study an equivalence relation defined on a finite Coxeter group $W$. The relation is indexed by an element $w\in W$ and is defined through the set of (left) associated reflections to each element of $W$. The combinatorial properties of $W$, particularly the (left) weak order, play a central role in our analysis. We have determined the precise structure of the equivalence classes and shown how the relation changes upon inverting $w$. We are currently exploring the correspondence between the equivalence classes and the lower Bruhat interval $[e, w]$.
+
+\section{Introduction}
+This is a summary of my work under Professor David Vogan from the summer of 2011 through January of 2012. The only knowledge that is assumed in the following text is that from the first three chapters of \cite{BB}. Important theorems about Coxeter groups will often be stated without proof for the sake of clarity.
+
+\section{Coxeter Groups}
+Recall that a Coxeter group $W$ is defined by a set of generators $S$ and relations of the form
+\[
+(s_i s_j)^{m_{ij}} = e
+\]
+where $m_{ii}=1$ (that is, all generators have order 2). We will only deal with finite Coxeter groups.
+
+Given $w \in W$, we call the expression $s_1s_2\cdots s_k = w$ \emph{reduced} if $k$ is minimal among all such products. $l(w) = k$ is the \emph{length} of $w$.
+
+Let $T = \{wsw^{-1} \mid s\in S, w \in W\}$ be the set of \emph{reflections}, conjugate to the generators. $S$ is also called the set of \emph{simple reflections}.
+
+Given an element $w$ with reduced expression $w = s_1s_2\cdots s_k$, let
+\[
+t_i = s_1s_2\cdots s_is_{i-1}\cdots s_1 = (s_1\cdots s_{i-1}) s_i (s_1\cdots s_{i-1})^{-1} \in T
+\]
+The set $T_L(w) = \{t_i \mid 1\leq i\leq k\} \subset T$ has size $k = l(w)$ and does not depend on the choice of reduced expression of $w$. It is called the set of \emph{left associated reflections} of $w$. The set $T_R(w)$ is defined analogously, and satisfies $T_R(w) = T_L(w^{-1}) = w^{-1}T_L(w)w$. We will also consider the \emph{left descent set} $D_L(w) = T_L(w) \cap S$ and analogously defined \emph{right descent set} $D_R(w)$.
+
+Every finite Coxeter group has a unique element of maximal length denoted by $w_0$. It has order 2, $T_L(w_0) = T$, and $l(ww_0) = l(w_0w) = l(w_0) - l(w)$.
+
+\section{Bruhat Order}
+The Bruhat order is a partial ordering of the elements of $W$. It is defined by the relations $tw < w$ if $l(tw) < l(w)$ for some $t \in T$. It is known that $tw < w$ if and only if $t \in T_L(w)$. It may appear that this definition favors left descents over right descents. However, there is an alternative (equivalent) description of the Bruhat order involving subword relations. Given $u, w \in W$, then $u\leq w$ if and only if there exist reduced expressions
+\[
+w = s_1s_2\ldots s_k
+\]
+and
+\[
+u = s_{i_1}s_{i_2}\cdots s_{i_m}
+\]
+where $1 \leq i_1 < i_2 < \cdots < i_m \leq k$. In fact, given any reduced expression for $w$, there will exist a corresponding reduced subword for $u$.
+
+Let $u \leq w$. We define the rank generating function for the Bruhat interval $[u, w]$ as
+\[
+B_{u, w}(q) = \sum_{v \in [u, w]} q^{l(v)}
+\]
+
+\section{Weak Order}
+There is another partial order known as the (right) weak order, defined by the relations $w <_R ws$ if $l(w) < l(ws)$ for some $s \in S$. It is a weakening of the Bruhat order; that is, $u <_R w$ implies $u < w$. In fact, $u \leq_R w$ implies that a reduced expression for $u$ is a prefix for one of $w$.
+
+The weak order has many nice properties. The mapping $T_L : W \rightarrow \mathcal{P}(T)$ preserves the poset structure of $W$ under the weak order. That is, $u \leq_R v$ if and only if $T_L(u) \subseteq T_L(v)$. Under the weak order, $W$ is an ortholattice, with well defined meet (longest common prefix), join, and with the complement of $w$ given by $ww_0$ (since $T_L(ww_0) = T \setminus T_L(w)$). 
+
+\section{Definitions}
+We are now ready to define the key construction in this paper. Let $T_L(u, v) = T_L(u) \cap T_L(v)$, and fix $w \in W$. We define the equivalence relation $\sim_w$ on $W$: $u\sim_w v$ means that $T_L(u, w) = T_L(v, w)$.
+
+The resulting equivalence classes are indexed by subsets of $T$. For $R \subseteq T$, let $E_w(R) = \{u \in W \mid T_L(u, w) = R\}$. We also denote the equivalence class of an element $u$ by $E_w(u) = E_w(T_L(w, u))$.
+
+Let the generating function for the equivalence classes be given by
+\[
+D_w(q) = \sum_{E_w(R) \neq \emptyset} q^{|R|}
+\]
+
+\section{The Structure of Equivalence Classes}
+The equivalence classes induced by an element $w$ happen to have a rather simple structure:
+
+\begin{theorem}
+Each (nonempty) equivalence class $E_w(R)$ is an interval under the (right) weak order.
+\end{theorem}
+
+\begin{proof}
+The proof of the theorem will use induction on the length of $w$, in the process giving a simple procedure for computing the equivalence classes. We begin by observing that when $w$ is the identity $e$, there is only one equivalence class containing all of $W$, since $T_L(e) = \emptyset$. The desired interval is $[e, w_0]_R = W$.
+
+We will make use of the following lemma, which is very useful in studying left associated reflections:
+
+\begin{lemma}
+$T_L(u^{-1}v) = T_L(u^{-1}) \ominus u^{-1}T_L(v)u = u^{-1}(T_L(u) \ominus T_L(v))u$.
+\end{lemma}
+\begin{proof}
+We shall induct on the length of $u$, the lemma being obvious when $u$ is the identity. First, suppose $u = s \in S$. If $sv > v$, then let $s_1\cdots s_k$ be a reduced expression for $v$, so that $ss_1\cdots s_k$ is a reduced expression for $sv$. As usual, let
+\[
+t_i = s_1s_2\cdots s_is_{i-1}\cdots s_1 = (s_1\cdots s_{i-1}) s_i (s_1\cdots s_{i-1})^{-1}
+\]
+Then we have that
+\[
+T_L(sv) = \{s\} \cup s\{t_i \mid 0\leq i < k\}s = s\{s\}s \cup sT_L(v)s = s(\{s\} \ominus T_L(v))s
+\]
+since $s \notin T_L(v)$. Now assume that $sv < v$. Then $s(sv) = v > sv$, so from the previous case we have that
+\[
+T_L(v) = T_L(s(sv)) = s(\{s\} \ominus T_L(sv))s
+\]
+which rearranges to the desired result $T_L(sv) = s(\{s\} \ominus T_L(v))s$. It now suffices to show that if the lemma holds for $u$, it also holds for $us$ for any given $s \in S$. We have that
+\[
+\begin{array} {lcl}
+T_L((us)^{-1}v) &=& T_L(su^{-1}v)\\
+&=& \{s\} \ominus sT_L(u^{-1}v)s\\
+&=& \{s\} \ominus sT_L(u^{-1})s \ominus su^{-1}T_L(v))us\\
+&=& T_L(su^{-1}) \ominus (us)^{-1}T_L(v)(us)\\
+&=& (us)^{-1}(T_L(us) \ominus T_L(v))(us)\\
+\end{array}
+\]
+as desired.
+\end{proof}
+
+Now fix $w$, and suppose $s \in S$ such that $sw > w$. The lemma implies that $T_L(w) = \{s\} \bigsqcup sT_L(w)s$. This will allow us to write $T_L(sw, su)$ in terms of $T_L(w, u)$. If $su > u$, then $T_L(su) = \{s\} \bigsqcup sT_L(u)s$, so we have that
+\[
+T_L(sw, su) = (\{s\} \bigsqcup sT_L(w)s) \cap (\{s\} \bigsqcup sT_L(u)s) = \{s\} \bigsqcup sT_L(w, u)s
+\]
+Else, if $su < u$, then the lemma says that $T_L(su) = sT_L(u)s \setminus \{s\}$, so
+\[
+T_L(sw, su) = (\{s\} \bigsqcup sT_L(w)s) \cap (sT_L(u)s \setminus \{s\}) = sT_L(w, u)s
+\]
+Thus, if $u \in E_w(R)$, then $su \in E_{sw}(\{s\} \bigsqcup sRs)$ if $su > u$ and $su \in E_{sw}(sRs)$ otherwise. Conversely, suppose that $T_L(sw, su) = sRs$ or $T_L(sw, su) = sRs \bigsqcup \{s\}$ with $s \notin R$. Then in both cases
+\[
+T_L(w, u) = (sT_L(sw)s \setminus \{s\}) \cap (sT_L(su)s \ominus \{s\}) = sT_L(sw, su)s \setminus \{s\} = R
+\]
+so that $u \in E_w(R)$. All together, this means that
+\begin{equation}\label{split}
+E_{sw}(sRs) \bigsqcup E_{sw}(sRs \sqcup \{s\}) = sE_w(R)
+\end{equation}
+
+We are now ready to prove that the equivalence classes are intervals. Again, assume that $sw > w$, and by induction that $E_w(R) = [u, v]_R$ is nonempty. Note that $s \notin D_L(w)$, so $s \notin R$.
+
+It is a simple fact of the right weak order that if $s \in D_L(u)$, then $s \in D_L(x)$ for all $x \geq_R u$, and similarly that if $s \notin D_L(v)$, then $s \notin D_L(x)$ for all $x \leq_R v$ (this actually holds for arbitrary reflections, not just simple ones). In the first case ($su < u$), this means that $s \notin T_L(sx)$ for all $x \in [u, v]_R$, and so
+\[
+E_{sw}(sRs) = sE_w(R) = s[u, v]_R = [su, sv]_R
+\]
+while $E_{sw}(sRs \sqcup \{s\})$ is empty. In the second case ($sv > v$), we similarly have that
+\[
+E_{sw}(sRs \sqcup \{s\}) = [su, sv]_R
+\]
+while $E_{sw}(sRs)$ is empty. The third case, where $s \in D_L(v) \setminus D_L(u)$, is more difficult. We must determine how the interval $[u, v]_R$ splits into disjoint sets $P$ and $Q$ where $x \in P$ if $sx > x$ and $x \in Q$ if $sx < x$. Then we will have that $E_{sw}(sRs) = sQ$ and $E_{sw}(sRs \sqcup \{s\}) = sP$. This case merits its own lemma:
+
+\begin{lemma}
+\label{ldescent}
+Suppose that $u \leq_R v$ and that $s \in D_L(v) \setminus D_L(u)$. Let $P = \{x \in [u, v]_R \mid s \notin D_L(x)\}$ and $Q = \{y \in [u, v]_R \mid s \in D_L(y)\}$. Then
+\[
+\begin{array}{lcr}
+P = [u, v \land sv]_R & \text{and} & Q = [u \lor su, v]_R
+\end{array}
+\]
+\end{lemma}
+
+\begin{proof}
+Let us begin by determining $P$. Clearly, $u$ is the lower bound of $P$. Choose $x \in P$ of maximal length. Since $s \in D_L(v)$, $x \neq v$, and so there exists an $s' \in S$ such that $x < xs' \leq_R v$. Since $l(xs') > l(x)$ and $x$ is maximal in $P$, we must have $xs' \in Q$, so $s \in D_L(xs')$.
+
+It is a consequence of the subword property of the Bruhat order that if $y < z$ and $s \in D_L(z) \setminus D_L(y)$, then $y \leq sz$. Since $s \in D_L(xs') \setminus D_L(x)$, and $x < xs'$, we have that $x \leq sxs'$. However, $l(sxs') = l(xs') - 1 = l(x)$, so in fact $x = sxs'$.
+
+Note also that $s \in D_L(v) \cap D_L(xs')$ and so $xs' \leq_R v$ translates to $sxs' \leq_R sv$. Thus, $x \leq_R sv$. Since this holds for all $x$ maximal in $P$, $P \leq_R sv$. By definition, $P \leq v$, and so $P \leq sv \land v = v'$.
+
+Since $v' \geq_R P \geq_R u$ and $v' \leq_R v$, $v' \in [u, v]_R$. But $v' \leq_R sv$, so $s \notin D_L(v')$ and thus $v' \in P$. It is clear now that in fact $P = [u, v']_R$ (since $s \notin D_L(y)$ for all $y \leq_R v'$).
+
+Determining $Q$ proceeds in a very similar fashion. Clearly, $v$ is the upper bound of $Q$. Now choose $x \in Q$ of minimal length, and $s' \in S$ such that $x > xs' \in P$. Then $sxs' > xs'$, and in fact $x = sxs'$. Since $s \notin D_L(u) \cup D_L(xs')$, $xs' \geq_R u$ translates to $sxs' \geq_R su$. Thus, $x \geq_R su$, and so $x \geq_R su \lor u = u'$. This holds for all minimal $x \in Q$, which implies that $Q \subseteq [u', v]_R$. It easy to see that in fact $u' \in Q$, so $Q = [u', v]_R$.
+\end{proof}
+
+We have shown that $P$ and $Q$ are both intervals in the (right) weak order. Since $s \notin D_L(x)$ for all $x \in P$, $E_{sw}(sRs \sqcup \{s\}) = sP$ is also an interval (translation by $s$ leaves the poset structure of $P$ unchanged). Similarly, since $s \in D_L(x)$ for all $x \in Q$, $E_{sw}(sRs) = sQ$ is also an interval.
+
+Thus, for each element $x$ such that $E_w(x)$ is an interval, $E_{sw}(sx)$ is an interval. Since $sW = W$, this shows that $E_{sw}(y)$ is an interval for all $y \in W$, thus completing the induction.
+\end{proof}
+
+\section{A Bijection}
+\begin{theorem}
+For each $w \in W$, there is a bijection $\varphi_w$ from $W$ to itself such that
+\[
+\varphi_w(E_w(R)) = E_{w^{-1}}(w^{-1}Rw)
+\]
+for each $R \subseteq T$. As a corollary, $D_w(q) = D_{w^{-1}}(q)$.
+\end{theorem}
+
+\begin{proof}
+It suffices to show that
+\[
+T_L(w^{-1}, \varphi_w(u)) = w^{-1}T_L(w, u)w
+\]
+Lemma~\ref{ldescent} makes the proof easy, once we explicitly give the bijection as:
+\[
+\varphi_w(u) = w^{-1}uw_0
+\]
+We compute:
+\[
+\begin{array}{lcl}
+T_L(w^{-1}, w^{-1}uw_0) &=& T_L(w^{-1}) \cap (T \setminus T_L(w^{-1}u))\\
+&=& T_L(w^{-1}) \setminus T_L(w^{-1}u)\\
+&=& w^{-1}T_L(w)w \setminus w^{-1}(T_L(w) \ominus T_L(u))w\\
+&=& w^{-1}(T_L(w) \cap T_L(u))w\\
+\end{array}
+\]
+as desired. We have used the fact that $A \setminus (A \ominus B) = A \cap B$.
+\end{proof}
+
+\section{A Conjecture}
+There is a interesting relationship between the generating function for the interval $[e, w]$ and that for the the equivalence classes defined by $w$. For certain $w$, it is the case that $B_{e, w}(q) = D_{w}(q)$. We conjecture that this occurs if and only if the Kazhdan-Luzstig polynomial $P_{e, w}(q)$ equals 1. The conjecture holds experimentally for a number of finite Coxeter, including those of types A, B, and D of rank at most 7.
+
+\begin{thebibliography}{9}
+
+\bibitem{BB}
+  Anders Bj\"{o}rner, Francesco Brenti,
+  \emph{Combinatorics of Coxeter Groups}.
+  Springer,
+  2005.
+
+\end{thebibliography}
+
+\end{document}
