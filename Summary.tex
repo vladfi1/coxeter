@@ -1,4 +1,4 @@
-\documentclass[10pt]{amsart}
+\documentclass[11pt]{article}
 \usepackage{amsmath, amssymb, amsthm, enumerate}
 
 \theoremstyle{definition}
@@ -6,22 +6,24 @@
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}
 
+\title{An Equivalence Relation on the Elements of a Coxeter Group}
+\author{
+Vlad Firoiu\\
+\texttt{vladfi1@mit.edu}
+\and
+David Vogan\\
+\texttt{dav@math.mit.edu}
+}
+
 \begin{document}
+\maketitle
 
-
-\section{Abstract}
-
-%define domain and subdomain
-%define main problem or objective (a bit vague so that exact subject is not revealed)
-%"we extend a property proved by xxx thesis..."
-%approach / methods (including program)
-%summary of main proven results/ properties
-%next steps
-
-In this paper, we study an equivalence relation defined on a finite Coxeter group $W$. The relation is indexed by an element $w\in W$ and is defined through the set of (left) associated reflections to each element of $W$. The combinatorial properties of $W$, particularly the (left) weak order, play a central role in our analysis. We have determined the precise structure of the equivalence classes and shown how the relation changes upon inverting $w$. We are currently exploring the correspondence between the equivalence classes and the lower Bruhat interval $[e, w]$.
+\begin{abstract}
+We study an equivalence relation defined on a finite Coxeter group $W$. The relation is indexed by an element $w\in W$ and is defined through the set of (left) associated reflections to each element of $W$. The combinatorial properties of $W$, particularly the (left) weak order, play a central role in our analysis. We have determined the precise structure of the equivalence classes and shown how the relation changes upon inverting $w$. We are currently exploring the correspondence between the equivalence classes and the lower Bruhat interval $[e, w]$.
+\end{abstract}
 
 \section{Introduction}
-This is a summary of my work under Professor David Vogan from the summer of 2011 through January of 2012. The only knowledge that is assumed in the following text is that from the first three chapters of \cite{BB}. Important theorems about Coxeter groups will often be stated without proof for the sake of clarity.
+This is a summary of my work under Professor David Vogan from the summer of 2011 through January of 2012. The only knowledge that is assumed in the following text is that from the first three chapters of \cite{BB}. Important theorems about Coxeter groups may be stated without proof for the sake of clarity.
 
 \section{Coxeter Groups}
 Recall that a Coxeter group $W$ is defined by a set of generators $S$ and relations of the form
